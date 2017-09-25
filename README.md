@@ -1,5 +1,8 @@
 # Microblog
 
+- link to repo: https://github.com/chanlis/microblog/
+- link to app: http://microblog.catperson.fun/
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
