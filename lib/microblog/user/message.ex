@@ -4,7 +4,7 @@ defmodule Microblog.User.Message do
   alias Microblog.User.Message
 
 
-  schema "messages" do
+  schema "message" do
     field :msg, :string
     field :name, :string
 

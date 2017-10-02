@@ -1,0 +1,5 @@
+<h2>New User following</h2>
+
+<%= render "form.html", Map.put(assigns, :action, user_following_path(@conn, :create)) %>
+
+<span><%= link "Back", to: user_following_path(@conn, :index) %></span>

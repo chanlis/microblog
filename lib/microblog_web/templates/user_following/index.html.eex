@@ -1,0 +1,26 @@
+<h2>Listing User followings</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Count</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user_following <- @user_followings do %>
+    <tr>
+      <td><%= user_following.count %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: user_following_path(@conn, :show, user_following), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: user_following_path(@conn, :edit, user_following), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: user_following_path(@conn, :delete, user_following), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New User following", to: user_following_path(@conn, :new) %></span>

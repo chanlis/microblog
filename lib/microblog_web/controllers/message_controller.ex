@@ -5,8 +5,8 @@ defmodule MicroblogWeb.MessageController do
   alias Microblog.User.Message
 
   def index(conn, _params) do
-    messages = User.list_messages()
-    render(conn, "index.html", messages: messages)
+    message = User.list_messages()
+    render(conn, "index.html", message: message)
   end
 
   def new(conn, _params) do

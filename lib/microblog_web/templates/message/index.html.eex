@@ -1,4 +1,4 @@
-<h2>Listing Messages</h2>
+<h2>Listing Message</h2>
 
 <table class="table">
   <thead>
@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for message <- @messages do %>
+<%= for message <- @message do %>
     <tr>
       <td><%= message.name %></td>
       <td><%= message.msg %></td>

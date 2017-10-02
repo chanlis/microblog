@@ -13,9 +13,9 @@ defmodule MicroblogWeb.MessageControllerTest do
   end
 
   describe "index" do
-    test "lists all messages", %{conn: conn} do
+    test "lists all message", %{conn: conn} do
       conn = get conn, message_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Messages"
+      assert html_response(conn, 200) =~ "Listing Message"
     end
   end
 

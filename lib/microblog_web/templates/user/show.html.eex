@@ -1,0 +1,15 @@
+<h2>Show User</h2>
+
+<ul>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+</ul>
+
+<button type="button" class="btn btn-primary">Follow</button>
+
+<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>
