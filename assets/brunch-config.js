@@ -3,7 +3,7 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: "js/app.js"
-    },
+
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
       // joinTo: {
@@ -18,7 +18,7 @@ exports.config = {
       //     "vendor/js/bootstrap.min.js"
       //   ]
       // }
-   
+    },
     stylesheets: {
       joinTo: "css/app.css"
     },
@@ -47,12 +47,12 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
-    }
+    },
     sass: {
-      options: {
-        includePaths: ["node_modules/bootstrap/scss"],
-        precision: 8
-      }
+	  options: {
+	    includePaths: ["node_modules/bootstrap/scss"],
+	    precision: 8
+	  }
     }
   },
 
@@ -63,10 +63,11 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
     globals: {
       $: 'jquery',
       jQuery: 'jquery',
+      Popper: 'popper.js',
       bootstrap: 'bootstrap'
     }
   }

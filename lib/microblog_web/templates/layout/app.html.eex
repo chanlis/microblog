@@ -10,12 +10,10 @@
     <title>CatPerson</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
-
   <body>
+   <nav class="navbar navbar-dark bg-dark navbar-expand-md">
     <div class="container">
-      <header class="header">
-<nav class="navbar navbar-dark bg-dark navbar-expand-md">
-      <a class="navbar-brand" href="#">CatPerson</a>
+      <a class="navbar-brand" href="/messages">CatPerson</a>
 
       <button class="navbar-toggler" type="button"
               data-toggle="collapse" data-target="#main-navbar">
@@ -23,18 +21,20 @@
       </button>
 
       <div class="collapse navbar-collapse" id="main-navbar">
-        <ul class="navbar-nav">
-        <li class="nav-item">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+<!--
             <% active = nav_active?(@view_module, "Message") %>
 	          <%= link "Messages", to: message_path(@conn, :index), class: "nav-link #{active}" %>
           </li>
+-->
           <%= if is_admin?(@current_user) do %>
             <li class="nav-item">
               <% active = nav_active?(@view_module, "User") %>
               <%= link "Users", to: user_path(@conn, :index), class: "nav-link #{active}" %>
             </li>
-<% end %>
-	</ul>
+          <% end %>
+        </ul>
       </div>
 
       <%= if @current_user do %>
@@ -50,16 +50,23 @@
           <input type="submit" value="Log in" class="btn btn-primary">
         <% end %>
       <% end %>
-</nav>
-      </header>
-      <%= if get_flash(@conn, :info) do %>
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <% end %>
-      <%= if get_flash(@conn, :error) do %>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <% end %>
+   </div>
+   </nav>
 
-      <main role="main">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12 my-2">
+          <%= if get_flash(@conn, :info) do %> 
+            <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <% end %>
+          <%= if get_flash(@conn, :error) do %> 
+            <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+      <main class="container" role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
