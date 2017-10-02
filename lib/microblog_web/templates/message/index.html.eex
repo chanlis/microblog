@@ -1,31 +1,31 @@
-<h2>Listing Message</h2>
+<h2>All Messages</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Msg</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for message <- @message do %>
-    <tr>
-      <td><%= message.name %></td>
-      <td><%= message.msg %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
-	<%= if is_admin?(@current_user) do %>
-        <span><%= link "Edit", to: message_path(@conn, :edit, message), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-	<% end %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
 <%= if @current_user do %>
 <span><%= link "New Message", to: message_path(@conn, :new) %></span>
 <% end %>
+
+<div class="row">
+  <%= for message <- @message do %>
+    <div class="col-sm-3">
+      <div class="card m-2">
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= link(message.name, to: message_path(@conn, :show, message)) %>
+          </h4>
+          <div class="card-text" style="height: 5em">
+            <p><%= message.msg %></p>
+          </div>
+
+          <%= if is_admin?(@current_user) do %>
+            <div class="m-2">
+            <span><%= link "Edit", to: message_path(@conn, :edit, message),
+                  class: "btn btn-outline-info btn-xs" %></span>
+            <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete,
+                  data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

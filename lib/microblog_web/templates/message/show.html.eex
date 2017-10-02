@@ -1,16 +1,8 @@
-<h2>Show Message</h2>
-
-<ul>
-  <li>
-    <strong>Name:</strong>
-    <%= @message.name %>
-  </li>
-
-  <li>
-    <strong>Msg:</strong>
-    <%= @message.msg %>
-  </li>
-
-</ul>
+<div class="container">
+  <div class="col">
+      <h1><%= @message.name %></h1>
+      <p><%= @message.msg %></p>
+  </div>
+</div>
 
 <span><%= link "Back", to: message_path(@conn, :index) %></span>
