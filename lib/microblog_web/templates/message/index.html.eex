@@ -1,16 +1,13 @@
 <h2>All Messages</h2>
 
-<%= if @current_user do %>
-<span><%= link "New Message", to: message_path(@conn, :new) %></span>
-<% end %>
 
 <div class="row">
   <%= for message <- @message do %>
     <div class="col-sm-3">
       <div class="card m-2">
         <div class="card-body">
-          <h4 class="card-title">
-            <%= link(message.name, to: message_path(@conn, :show, message)) %>
+          <h4 class="card-title" style="text-transform: uppercase;">
+            <b><%= link(message.name, to: message_path(@conn, :show, message)) %></b>
           </h4>
           <div class="card-text" style="height: 5em">
             <p><%= message.msg %></p>
@@ -28,4 +25,7 @@
       </div>
     </div>
   <% end %>
+<%= if @current_user do %>
+<button class="btn my-5"><%= link "+", to: message_path(@conn, :new) %></button>
+<% end %>
 </div>

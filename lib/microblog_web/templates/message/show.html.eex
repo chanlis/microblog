@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container mt-5 text-center">
   <div class="col">
-      <h1><%= @message.name %></h1>
+      <h1 style="letter-spacing: 2px; text-transform: uppercase;"><b><%= @message.name %></b></h1>
+      <hr>
       <p><%= @message.msg %></p>
   </div>
+  <br>
+  <span><%= link "Back", to: message_path(@conn, :index) %></span>
 </div>
-
-<span><%= link "Back", to: message_path(@conn, :index) %></span>
