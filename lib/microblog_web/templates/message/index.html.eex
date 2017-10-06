@@ -1,33 +1,30 @@
-<h2>All Messages</h2>
-
-
-<div class="row">
-  <%= for message <- @message do %>
-  <div class="col-sm-3">
-    <div class="card m-2">
-      <div class="card-body">
-        <h4 class="card-title" style="text-transform: uppercase;">
-          <b><%= link(message.name, to: message_path(@conn, :show, message)) %></b>
-        </h4>
-        <div class="card-text" style="height: 5em">
-          <p><%= message.msg %></p>
-        </div>
-
-        <%= if is_admin?(@current_user) do %>
-        <div class="m-2">
-          <span><%= link "Edit", to: message_path(@conn, :edit, message),
-          class: "btn btn-outline-info btn-xs" %></span>
-          <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete,
-          data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
-<div class="row">
+<div class="row pb-4">
+  <div class="col">
+  <h2>Messages</h2>
   <%= if @current_user do %>
   <%= link "New Message", to: message_path(@conn, :new) %>
   <% end %>
+  </div>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for message <- Enum.reverse(@message) do %>
+    <tr>
+      <td><%= message.name %></td>
+      <td><%= message.user_id %></td>
+      <td><%= message.inserted_at %></td>
+      <td class="text-right">
+        <span><%= link "Read More", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
