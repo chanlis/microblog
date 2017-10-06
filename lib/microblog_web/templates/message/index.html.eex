@@ -3,29 +3,31 @@
 
 <div class="row">
   <%= for message <- @message do %>
-    <div class="col-sm-3">
-      <div class="card m-2">
-        <div class="card-body">
-          <h4 class="card-title" style="text-transform: uppercase;">
-            <b><%= link(message.name, to: message_path(@conn, :show, message)) %></b>
-          </h4>
-          <div class="card-text" style="height: 5em">
-            <p><%= message.msg %></p>
-          </div>
-
-          <%= if is_admin?(@current_user) do %>
-            <div class="m-2">
-            <span><%= link "Edit", to: message_path(@conn, :edit, message),
-                  class: "btn btn-outline-info btn-xs" %></span>
-            <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete,
-                  data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-            </div>
-          <% end %>
+  <div class="col-sm-3">
+    <div class="card m-2">
+      <div class="card-body">
+        <h4 class="card-title" style="text-transform: uppercase;">
+          <b><%= link(message.name, to: message_path(@conn, :show, message)) %></b>
+        </h4>
+        <div class="card-text" style="height: 5em">
+          <p><%= message.msg %></p>
         </div>
+
+        <%= if is_admin?(@current_user) do %>
+        <div class="m-2">
+          <span><%= link "Edit", to: message_path(@conn, :edit, message),
+          class: "btn btn-outline-info btn-xs" %></span>
+          <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete,
+          data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        </div>
+        <% end %>
       </div>
     </div>
+  </div>
   <% end %>
-<%= if @current_user do %>
-<button class="btn my-5"><%= link "+", to: message_path(@conn, :new) %></button>
-<% end %>
+</div>
+<div class="row">
+  <%= if @current_user do %>
+  <%= link "New Message", to: message_path(@conn, :new) %>
+  <% end %>
 </div>

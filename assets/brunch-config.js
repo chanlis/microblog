@@ -20,7 +20,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        after: ["priv/static/css/app.scss"]
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -49,11 +52,14 @@ exports.config = {
       ignore: [/vendor/]
     },
     sass: {
-	  options: {
-	    includePaths: ["node_modules/bootstrap/scss"],
-	    precision: 8
-	  }
-    }
+  	  options: {
+  	    includePaths: ["node_modules/bootstrap/scss", "node_modules/font-awesome/scss"],
+  	    precision: 8
+  	  }
+    },
+    copycat: {
+      "fonts": ["node_modules/font-awesome/fonts"] // copy node_modules/font-awesome/fonts/* to priv/static/fonts/
+    },
   },
 
   modules: {
@@ -68,6 +74,7 @@ exports.config = {
       $: 'jquery',
       jQuery: 'jquery',
       Popper: 'popper.js',
+      Tether: 'tether',
       bootstrap: 'bootstrap'
     }
   }
