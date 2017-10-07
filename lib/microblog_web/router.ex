@@ -17,10 +17,10 @@ defmodule MicroblogWeb.Router do
 
   scope "/", MicroblogWeb do
     pipe_through :browser # Use the default browser stack
-    get "/", PageController, :index
+    get "/", MessageController, :index
     resources "/messages", MessageController	
     resources "/users", UserController
-    resources "/user_followings", User_followingController
+    resources "/following", User_followingController
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
   end

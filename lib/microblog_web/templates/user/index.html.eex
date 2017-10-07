@@ -3,16 +3,14 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Email</th>
-
-      <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for user <- @users do %>
     <tr>
       <td><%= user.email %></td>
-
       <td class="text-right">
         <span><%= link "View Profile", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
         <%= cond do %>
@@ -31,4 +29,4 @@
   </tbody>
 </table>
 
-<span><%= link "Sign Up", to: user_path(@conn, :new) %></span>
+<span><%= link "Add Account", to: user_path(@conn, :new) %></span>

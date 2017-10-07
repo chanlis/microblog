@@ -14,7 +14,7 @@
   <body>
    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
     <div class="container">
-      <a class="navbar-brand" href="#">CatPerson</a>
+      <a class="navbar-brand" href="/">CatPerson</a>
 
       <button class="navbar-toggler" type="button"
               data-toggle="collapse" data-target="#main-navbar">
@@ -24,14 +24,19 @@
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <% active = nav_active?(@view_module, "Message") %>
-	          <%= link "Messages", to: message_path(@conn, :index), class: "nav-link #{active}" %>
+            <% active = nav_active?(@view_module, "User_following") %>
+	          <%= link "Messages", to: user_following_path(@conn, :index), class: "nav-link #{active}" %>
           </li>
-
           <%= if is_admin?(@current_user) do %>
             <li class="nav-item">
               <% active = nav_active?(@view_module, "User") %>
               <%= link "Users", to: user_path(@conn, :index), class: "nav-link #{active}" %>
+            </li>
+          <% end %>
+          <%= if @current_user do %>
+            <li class="nav-item">
+              <% active = nav_active?(@view_module, "User") %>
+              <%= link "My Profile", to: user_path(@conn, :show, @current_user), class: "nav-link #{active}" %>
             </li>
           <% end %>
         </ul>

@@ -1,6 +1,6 @@
 <div class="row pb-4">
   <div class="col">
-  <h2>Messages</h2>
+  <h2>Discover New Messages!</h2>
   <%= if @current_user do %>
   <%= link "New Message", to: message_path(@conn, :new) %>
   <% end %>
