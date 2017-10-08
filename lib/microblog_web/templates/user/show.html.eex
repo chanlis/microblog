@@ -1,15 +1,37 @@
-<h2><%= @user.email %></h2>
-
-<ul>
-
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
-
-</ul>
-
-<button type="button" class="btn btn-primary">Follow</button>
-
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3 col-sm-8 mx-auto">
+	  <h1><%= @user.name %></h1>
+          <p>Posts: <%= Enum.count(Microblog.User.get_user_messages(@user.id)) %></p>
+	  <%= if @current_user != @user do %>
+          <button type="button" class="btn btn-primary btn-block">Follow</button></p>
+          <% end %>
+          <hr>
+          <p class="text-justify"><%= @user.bio %></p>
+          <%= if @current_user == @user do %>
+          <p class=""><%= link "Edit Profile", to: user_path(@conn, :edit, @user) %>
+          <% end %>
+        </div>
+        <div class="col-md-9 p-sm-2 pl-md-5">
+          <div class="row m-auto">
+            <h2>Messages</h2>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6 my-2">
+            <%= if Enum.count(Microblog.User.get_user_messages(@user.id)) > 0 do %>
+              <table class="table">
+              <%= for message <- Enum.reverse(Microblog.User.get_user_messages(@user.id)) do %>
+                <tr>
+                  <td><%= link message.name, to: message_path(@conn, :show, message) %>
+                  <td><%= message.msg %></td>              
+                </tr>
+              <% end %>
+              </table>
+            <% else %>
+              <p>No messages yet... :(</p>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

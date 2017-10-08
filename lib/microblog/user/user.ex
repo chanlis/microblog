@@ -21,6 +21,11 @@ defmodule Microblog.User do
     Repo.all(Message)
   end
 
+  def get_user_messages(id) do
+    user_messages = from(m in Message, where: m.user_id == ^id) 
+    Repo.all(user_messages)
+  end
+ 
   @doc """
   Gets a single message.
 
