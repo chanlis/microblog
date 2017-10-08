@@ -42,7 +42,8 @@
         </ul>
       </div>
 
-      <%= if @current_user do %>
+<%= if @current_user do %>
+        <%= link "New Message", to: message_path(@conn, :new), class: "btn btn-primary mx-3" %>
         <span class="text-light">
           <%= @current_user.email %> |
           <%= link("logout", to: session_path(@conn, :logout), method: :delete) %>
@@ -53,7 +54,7 @@
           <input type="text" placeholder="email"
                              class="form-control" name="email">
           <input type="submit" value="Log in" class="btn btn-primary">
-          <span class="p-2"><%= link "Sign Up", to: user_path(@conn, :new) %></span>
+          <%= link "Sign Up", to: user_path(@conn, :new), class: "px-3" %>
         <% end %>
       <% end %>
    </div>

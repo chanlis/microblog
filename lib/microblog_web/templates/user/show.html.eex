@@ -17,13 +17,14 @@
             <h2>Messages</h2>
           </div>
           <div class="row">
-            <div class="col-md-4 col-sm-6 my-2">
+            <div class="col-md-12 col-sm-12 my-2">
             <%= if Enum.count(Microblog.User.get_user_messages(@user.id)) > 0 do %>
               <table class="table">
               <%= for message <- Enum.reverse(Microblog.User.get_user_messages(@user.id)) do %>
                 <tr>
-                  <td><%= link message.name, to: message_path(@conn, :show, message) %>
-                  <td><%= message.msg %></td>              
+                  <td><b><%= message.name %></b></td>
+                  <td><%= message.msg %></td>
+                  <td class="text-right"><%= link message.inserted_at, to: message_path(@conn, :show, message) %></td>
                 </tr>
               <% end %>
               </table>

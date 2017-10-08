@@ -1,26 +1,23 @@
 <div class="row pb-4">
   <div class="col">
-  <h2>Discover New Messages!</h2>
-  <%= if @current_user do %>
-  <%= link "New Message", to: message_path(@conn, :new) %>
-  <% end %>
+  <h2>Discover more messages...</h2>
   </div>
 </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>User</th>
+      <th>Subject</th>
       <th>Date</th>
+      <th>User</th>
     </tr>
   </thead>
   <tbody>
 <%= for message <- Enum.reverse(@message) do %>
     <tr>
       <td><%= message.name %></td>
-      <td><%= message.user_id %></td>
       <td><%= message.inserted_at %></td>
+      <td><%= link get_user(message.user_id).name, to: user_path(@conn, :show, get_user(message.user_id)) %></td>
       <td class="text-right">
         <span><%= link "Read More", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
       </td>
