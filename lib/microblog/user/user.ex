@@ -27,10 +27,16 @@ defmodule Microblog.User do
     Repo.all(user_messages)
   end
 
+  def list_message_followings(id) do
+    message_followings = from(m in Message, where: m.user_id in ^id)
+    Repo.all(message_followings)
+  end
+
   def list_user_followings(id) do
     user_followings = from(f in Follow, where: f.user_id == ^id) 
     Repo.all(user_followings)
   end
+
 
   @doc """
   Gets a single message.
@@ -126,6 +132,11 @@ defmodule Microblog.User do
   """
   def list_follows do
     Repo.all(Follow)
+  end
+
+  def list_user_followings(id) do
+    user_followings = from f in Follow, where: f.user_id == ^id
+    Repo.all(user_followings)
   end
 
   @doc """

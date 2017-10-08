@@ -5,8 +5,10 @@ defmodule MicroblogWeb.FollowController do
   alias Microblog.User.Follow
 
   def index(conn, _params) do
-    follows = User.list_follows()
-    render(conn, "index.html", follows: follows)
+    follow_ids = Enum.map(User.list_user_followings(get_session(conn, :user_id)), fn(follow) -> follow.following_id end)
+    messages = User.list_message_followings(follow_ids)
+    
+    render(conn, "index.html", messages: messages)
   end
 
   def new(conn, _params) do

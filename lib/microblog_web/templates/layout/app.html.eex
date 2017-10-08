@@ -32,7 +32,7 @@
           <%= if @current_user do %>
           <li class="nav-item">
             <% active = nav_active?(@view_module, "Follow") %>
-	          <%= link "Messages", to: follow_path(@conn, :index), class: "nav-link #{active}" %>
+	          <%= link "Follows", to: follow_path(@conn, :index), class: "nav-link #{active}" %>
           </li>
             <li class="nav-item">
               <% active = nav_active?(@view_module, "User") %>
