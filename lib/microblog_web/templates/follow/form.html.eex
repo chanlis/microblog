@@ -4,8 +4,7 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "Follow", class: "btn btn-primary btn-block" %>
   </div>
 <% end %>

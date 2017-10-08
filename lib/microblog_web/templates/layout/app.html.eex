@@ -23,17 +23,17 @@
 
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <% active = nav_active?(@view_module, "User_following") %>
-	          <%= link "Messages", to: user_following_path(@conn, :index), class: "nav-link #{active}" %>
-          </li>
-          <%= if is_admin?(@current_user) do %>
+         <%= if is_admin?(@current_user) do %>
             <li class="nav-item">
               <% active = nav_active?(@view_module, "User") %>
               <%= link "Users", to: user_path(@conn, :index), class: "nav-link #{active}" %>
             </li>
           <% end %>
           <%= if @current_user do %>
+          <li class="nav-item">
+            <% active = nav_active?(@view_module, "Follow") %>
+	          <%= link "Messages", to: follow_path(@conn, :index), class: "nav-link #{active}" %>
+          </li>
             <li class="nav-item">
               <% active = nav_active?(@view_module, "User") %>
               <%= link "My Profile", to: user_path(@conn, :show, @current_user), class: "nav-link #{active}" %>

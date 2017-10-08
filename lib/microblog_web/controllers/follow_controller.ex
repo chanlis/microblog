@@ -14,12 +14,12 @@ defmodule MicroblogWeb.FollowController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"follow" => follow_params}) do
-    case User.create_follow(follow_params) do
+  def create(conn, %{"user_id" => user_id, "following_id" => following_id}) do
+    case User.create_follow(%{"user_id" => user_id, "following_id" => following_id}) do
       {:ok, follow} ->
         conn
         |> put_flash(:info, "Follow created successfully.")
-        |> redirect(to: follow_path(conn, :show, follow))
+        |> redirect(to: user_path(conn, :show, following_id))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

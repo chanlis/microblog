@@ -1,8 +1,10 @@
 <h2>Show Follow</h2>
 
 <ul>
-
+  <li>user: <%= @follow.user_id %></li>
+  <li>following: <%= @follow.following_id %></li>
 </ul>
 
+<span><%= link "Delete", to: follow_path(@conn, :delete, @follow), method: :delete %></span>
 <span><%= link "Edit", to: follow_path(@conn, :edit, @follow) %></span>
 <span><%= link "Back", to: follow_path(@conn, :index) %></span>
