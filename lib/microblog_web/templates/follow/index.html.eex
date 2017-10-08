@@ -10,16 +10,14 @@
   <tbody>
 <%= for follow <- @follows do %>
     <tr>
+    <%= if follow.user_id == @current_user.id do %>
       <td><%= link get_user(follow.user_id).name, to: user_path(@conn, :show, follow.user_id) %></td>
       <td><%= link get_user(follow.following_id).name, to: user_path(@conn, :show, follow.following_id) %></td>
       <td class="text-right">
-        <span><%= link "Show", to: follow_path(@conn, :show, follow), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: follow_path(@conn, :edit, follow), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: follow_path(@conn, :delete, follow), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Unfollow", to: follow_path(@conn, :delete, follow), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
+    <% end %>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Follow", to: follow_path(@conn, :new) %></span>

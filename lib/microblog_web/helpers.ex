@@ -8,6 +8,10 @@ defmodule MicroblogWeb.Helpers do
     Microblog.Accounts.get_user!(id)
   end  
 
+  def get_user_followings() do
+    Microblog.User.list_follows
+  end
+
   def nav_active?(view, text) do
     if String.contains?(to_string(view), text) do
       "active"

@@ -3,6 +3,7 @@ defmodule MicroblogWeb.UserController do
 
   alias Microblog.Accounts
   alias Microblog.Accounts.User
+  alias Microblog.User.Follow
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -27,7 +28,8 @@ defmodule MicroblogWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
-    render(conn, "show.html", user: user)
+    follow = Enum.find(get_user_followings(), false, fn(follow) -> follow.user_id == get_session(conn, :user_id) && follow.following_id == user.id end)
+    render(conn, "show.html", user: user, follow: follow)
   end
 
   def edit(conn, %{"id" => id}) do

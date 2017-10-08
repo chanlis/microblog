@@ -7,6 +7,7 @@ defmodule Microblog.User do
   alias Microblog.Repo
 
   alias Microblog.User.Message
+  alias Microblog.User.Follow
 
   @doc """
   Returns the list of messages.
@@ -25,7 +26,12 @@ defmodule Microblog.User do
     user_messages = from(m in Message, where: m.user_id == ^id) 
     Repo.all(user_messages)
   end
- 
+
+  def list_user_followings(id) do
+    user_followings = from(f in Follow, where: f.user_id == ^id) 
+    Repo.all(user_followings)
+  end
+
   @doc """
   Gets a single message.
 

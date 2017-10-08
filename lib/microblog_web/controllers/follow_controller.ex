@@ -18,7 +18,6 @@ defmodule MicroblogWeb.FollowController do
     case User.create_follow(%{"user_id" => user_id, "following_id" => following_id}) do
       {:ok, follow} ->
         conn
-        |> put_flash(:info, "Follow created successfully.")
         |> redirect(to: user_path(conn, :show, following_id))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -51,10 +50,10 @@ defmodule MicroblogWeb.FollowController do
 
   def delete(conn, %{"id" => id}) do
     follow = User.get_follow!(id)
+    user = follow.following_id
     {:ok, _follow} = User.delete_follow(follow)
 
     conn
-    |> put_flash(:info, "Follow deleted successfully.")
-    |> redirect(to: follow_path(conn, :index))
+    |> redirect(to: user_path(conn, :show, user))
   end
 end
