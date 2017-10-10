@@ -9,5 +9,32 @@
       <p><%= @message.msg %></p>
   </div>
   <br>
-  <span><%= link "Back", to: message_path(@conn, :index), class: "btn btn-primary" %></span>
+   <div class="d-inline-block">
+    <%= if @current_user do %>
+    <div>
+      <button id="like-add-button" class="btn btn-secondary"
+         data-user-id="<%= @current_user.id %>">Like</button>
+    </div>
+    <% end %>
+  </div>
+ 
+  <div class="d-inline-block"> 
+    <%= link "Back", to: message_path(@conn, :index), class: "btn btn-primary" %>
+  </div>
 </div>
+
+<div id="message-likes"
+     data-path="<%= like_path(@conn, :index) %>"
+     data-message_id="<%= @message.id %>">
+  &nbsp;
+</div>
+
+<script id="likes-template" type="text/x-handlebars-template">
+  <div class="text-center text-muted pt-5">
+    {{#each data}}
+    <p><b>{{user_email}}</b> likes this</p>
+    {{else}}    
+    <p>No likes yet. Be the first to like!</p>
+    {{/each}}
+  </div>
+</script>
