@@ -39,8 +39,8 @@ defmodule MicroblogWeb.LikeController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    like = Feedback.get_like!(id)
+  def delete(conn, %{"like" => like_params}) do
+    like = Feedback.get_like!(0)
     with {:ok, %Like{}} <- Feedback.delete_like(like) do
       send_resp(conn, :no_content, "")
     end

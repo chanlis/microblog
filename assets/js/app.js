@@ -11,7 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html"
+// import "phoenix_html"
 
 // Import local files
 //
@@ -38,6 +38,7 @@ $(function() {
 
   let bb = $($("#like-add-button")[0]);
   let u_id = bb.data('user-id');
+  let method = bb.data('method');
 
   function fetch_likes() {
     function got_likes(data) {
@@ -56,7 +57,7 @@ $(function() {
     });
   }
 
-  function add_like() {
+  function like(method) {
     let data = {like: {message_id: m_id, user_id: u_id}};
 
     $.ajax({
@@ -64,12 +65,10 @@ $(function() {
       data: JSON.stringify(data),
       contentType: "application/json",
       dataType: "json",
-      method: "POST",
+      method: method,
       success: fetch_likes,
     });
   }
-
-  bb.click(add_like);
-
+  bb.click(like("DELETE"));
   fetch_likes();
 });
