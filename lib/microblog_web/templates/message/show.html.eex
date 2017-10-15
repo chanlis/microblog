@@ -13,8 +13,7 @@
     <%= if @current_user do %>
     <div>
       <button id="like-add-button" class="btn btn-secondary"
-         data-user-id="<%= @current_user.id %>"
-         data-method="DELETE">Like</button>
+         data-user-id="<%= @current_user.id %>">Like</button>
     </div>
     <% end %>
   </div>

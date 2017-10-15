@@ -98,11 +98,6 @@ defmodule Microblog.Feedback do
     Repo.delete(like)
   end
 
-  def delete_like(user_id, message_id) do
-    like = Repo.get_by(Like, user_id: user_id, message_id: message_id)
-    Repo.delete(like)
-  end
-
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking like changes.
 

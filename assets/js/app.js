@@ -11,14 +11,14 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-// import "phoenix_html"
+import "phoenix_html"
 
 // Import local files
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+//import socket from "./socket"
 
 let handlebars = require("handlebars");
 
@@ -38,11 +38,24 @@ $(function() {
 
   let bb = $($("#like-add-button")[0]);
   let u_id = bb.data('user-id');
-  let method = bb.data('method');
+
+  var user_like;
 
   function fetch_likes() {
     function got_likes(data) {
-      console.log(data);
+      user_like = -1;
+      for(var i = 0; i < data.data.length; i++) {
+        if (data.data[i].user_id == u_id) {
+          user_like = data.data[i].id;
+        }
+      }
+      if(user_like >= 0) {
+        bb.html("Unlike");
+      }
+      else {
+        bb.html("Like");
+      }
+
       let html = tmpl(data);
       dd.html(html);
     }
@@ -57,18 +70,35 @@ $(function() {
     });
   }
 
-  function like(method) {
-    let data = {like: {message_id: m_id, user_id: u_id}};
+  function like() {
+    console.log(user_like);
+    if (user_like >= 0) {
+      unlike(user_like)
+    }
+    else {
+      let data = {like: {message_id: m_id, user_id: u_id}};
+      $.ajax({
+        url: path,
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: "json",
+        method: "POST",
+        success: fetch_likes,
+      });
+    }
+    fetch_likes();
+  }
 
+  function unlike(id) {
     $.ajax({
-      url: path,
-      data: JSON.stringify(data),
+      url: path + "/" + id,
       contentType: "application/json",
       dataType: "json",
-      method: method,
+      method: "DELETE",
       success: fetch_likes,
     });
   }
-  bb.click(like("DELETE"));
+
+  bb.click(like);
   fetch_likes();
 });
