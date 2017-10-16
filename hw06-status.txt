@@ -16,7 +16,7 @@ http://microblog.catperson.fun/
 
 4. What's the link to the Travis CI build for the version of your app
    that you made a release of? You can find this on Travis under "Build History".
-https://travis-ci.org/chanlis/microblog/builds/288609634/
+https://travis-ci.org/chanlis/microblog/builds/288620661
 
 5. Did you successfully deploy? If not, what doesn't work?
 Yes
