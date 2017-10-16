@@ -17,6 +17,12 @@ defmodule MicroblogWeb.MessageController do
   def create(conn, %{"message" => message_params}) do
     case User.create_message(message_params) do
       {:ok, message} ->
+        MicroblogWeb.Endpoint.broadcast "updates:all", "new_msg",
+           %{"message_name" => message.name,
+             "message_date" => message.inserted_at,
+             "message_user" => get_user(message.user_id).name,
+             "user_show_path" => user_path(conn, :show, get_user(message.user_id)),
+             "message_show_path" => message_path(conn, :show, message)}
         conn
         |> put_flash(:info, "Message created successfully.")
         |> redirect(to: message_path(conn, :show, message))

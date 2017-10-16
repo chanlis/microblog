@@ -54,7 +54,50 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("updates:all", {})
+
+const newMessage = function({message_name, message_date, message_user, user_show_path, message_show_path}) {
+  let msg = document.createElement("tr")
+
+  // subject
+  let msg_name = document.createElement("td")
+  msg_name.innerText = message_name
+  
+  // date
+  let msg_date = document.createElement("td")
+  msg_date.innerText = message_date
+
+  // user
+  let msg_user = document.createElement("td")
+  let msg_user_link = document.createElement("a")
+  msg_user_link.href = user_show_path
+  msg_user_link.innerText = message_user
+  msg_user.appendChild(msg_user_link)
+
+  // read more
+  let msg_show = document.createElement("td")
+  msg_show.className = "text-right"
+  let msg_show_span = document.createElement("span")
+  let msg_show_link = document.createElement("a")
+  msg_show_link.href = message_show_path
+  msg_show_link.className = "btn btn-default btn-xs"
+  msg_show_link.innerText = "Read More"
+  msg_show_span.appendChild(msg_show_link)
+  msg_show.appendChild(msg_show_span)
+
+  msg.appendChild(msg_name)
+  msg.appendChild(msg_date)
+  msg.appendChild(msg_user)
+  msg.appendChild(msg_show)
+
+  return msg 
+}
+
+channel.on("new_msg", payload => {
+  let newMsg = newMessage(payload)
+  $("#messages").prepend(newMsg);
+})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })

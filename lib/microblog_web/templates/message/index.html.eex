@@ -12,7 +12,7 @@
       <th>User</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="messages">
 <%= for message <- Enum.reverse(@message) do %>
     <tr>
       <td><%= message.name %></td>
