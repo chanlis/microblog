@@ -12,7 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :microblog, Microblog.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
+  username: "microblog",
   password: "Eiqu10quai",
   database: "microblog_test",
   hostname: "localhost",
