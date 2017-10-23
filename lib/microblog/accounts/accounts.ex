@@ -7,7 +7,6 @@ defmodule Microblog.Accounts do
   alias Microblog.Repo
 
   alias Microblog.Accounts.User
-  alias Microblog.User.Follow
 
   @doc """
   Returns the list of users.

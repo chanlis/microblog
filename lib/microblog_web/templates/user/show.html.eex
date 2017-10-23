@@ -6,7 +6,7 @@
 	  <%= if @current_user && @current_user != @user do %>
           <%= if @follow do %>
           <%= link "Unfollow", to: follow_path(@conn, :delete, @follow), method: :delete, class: "btn btn-danger btn-block" %>
-          <%= else %>
+          <% else %>
           <%= link "Follow", to: follow_path(@conn, :create, %{"user_id" => @current_user.id, "following_id" => @user.id}), method: :post, class: "btn btn-primary btn-block" %>
           <% end %>
           <% end %>

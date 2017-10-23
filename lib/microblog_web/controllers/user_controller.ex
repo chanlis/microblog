@@ -3,7 +3,6 @@ defmodule MicroblogWeb.UserController do
 
   alias Microblog.Accounts
   alias Microblog.Accounts.User
-  alias Microblog.User.Follow
 
   def index(conn, _params) do
     users = Accounts.list_users()

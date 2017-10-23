@@ -22,7 +22,7 @@
     </tr>
   </tbody>
 </table>
-<%= else %>
+<% else %>
 <p>YOU'RE NOT FOLLOWING ANYONE. Go follow some people first and then come back here. >:(</p>
 
 <% end %>

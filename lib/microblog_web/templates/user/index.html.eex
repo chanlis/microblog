@@ -18,10 +18,10 @@
           <% is_admin?(@current_user) -> %>
             <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-primary" %></span>
             <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-          <%= @current_user == user -> %>
+          <% @current_user == user -> %>
             <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-primary" %></span>
             <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-          <%= true -> %>
+          <% true -> %>
         <% end %>
 
       </td>

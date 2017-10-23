@@ -32,12 +32,6 @@ defmodule Microblog.User do
     Repo.all(message_followings)
   end
 
-  def list_user_followings(id) do
-    user_followings = from(f in Follow, where: f.user_id == ^id) 
-    Repo.all(user_followings)
-  end
-
-
   @doc """
   Gets a single message.
 
