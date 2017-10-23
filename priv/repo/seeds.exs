@@ -16,5 +16,5 @@ alias Microblog.Accounts.User
 Repo.delete_all(User)
 Repo.delete_all(Message)
 
-Repo.insert!(%User{email: "admin@example.com", is_admin?: true, name: "Admin", bio: ""})
-Repo.insert!(%User{email: "lisa@example.com", is_admin?: false, name: "Lisa", bio: "student at Northeastern"})
+Repo.insert!(%User{email: "admin@example.com", is_admin?: true, name: "Admin", bio: "", password: "admin", password_confirmation: "admin"})
+Repo.insert!(%User{email: "lisa@example.com", is_admin?: false, name: "Lisa", bio: "student at Northeastern", password: "catperson", password_confirmation: "catperson"})
