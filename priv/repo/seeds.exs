@@ -16,5 +16,4 @@ alias Microblog.Accounts.User
 Repo.delete_all(User)
 Repo.delete_all(Message)
 
-Repo.insert!(%User{email: "admin@example.com", is_admin?: true, name: "Admin", bio: "", password: "admin", password_confirmation: "admin"})
-Repo.insert!(%User{email: "lisa@example.com", is_admin?: false, name: "Lisa", bio: "student at Northeastern", password: "catperson", password_confirmation: "catperson"})
+Repo.insert!(%User{email: "admin@example.com", name: "Admin", is_admin?: true, password: "admincatperson", password_confirmation: "admincatperson", password_hash: Comeonin.Argon2.hashpwsalt("admincatperson")})

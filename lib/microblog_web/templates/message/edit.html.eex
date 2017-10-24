@@ -2,4 +2,8 @@
 
 <%= render "form.html", Map.put(assigns, :action, message_path(@conn, :update, @message)) %>
 
-<span><%= link "Back", to: message_path(@conn, :index) %></span>
+<div>
+<%= link "Delete", to: message_path(@conn, :delete, @message), class: "btn btn-danger" %>
+</div>
+
+<span><%= link "Back", to: message_path(@conn, :show, @message) %></span>

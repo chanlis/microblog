@@ -1,5 +1,17 @@
-<h2>New User</h2>
-
+<div class="jumbotron text-center">
+  <h1 class="display-2">catperson.fun</h1>
+  <p class="lead">Your favorite microblog app that lets you post messages, follow users, like posts, and create a cool profile.</p>
+  <hr class="my-4">
+    <%= if @current_user do %>
+    <p>What are you doing here? Go post some messages or something.</p>    
+    <% else %>
+    <p class="text-muted">Sign up below or log in above.</p>
+    <% end %>
+  </p>
+</div>
+<div class="container">
+<%= if !@current_user do %>
+<h1 class="pb-4">Sign Up</h1>
 <%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
-
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<% end %>
+</div>
