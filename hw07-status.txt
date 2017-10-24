@@ -6,39 +6,41 @@ Please answer the following questions and submit the filled-in file to Bottlenos
 
 
 1. What's your name?
-
+Lisa Chan
 
 2. What's the link to your Github repo's releases page?
-
+https://github.com/chanlis/microblog/releases/tag/v0.0.2
 
 3. What's the link to your deployed Microblog app?
-
+https://microblog.catperson.fun
 
 4. Did you successfully deploy? If not, what doesn't work?
-
+Yes
 
 5. Did you successfully implement passwords securely? If not, what doesn't work?
-
+Yes
 
 6. Did you successfully implement admin users? What paths are admin-only? What paths
    are accessible to all users.
+Yes, only admin users are allowed to delete users.
 
-
-7. What changes did you make to clean up your application layout and navigation?
-
-
+7. What changes did you make to clean up your application layout and navigation?- Landing page no longer shows message index, but rather the sign up form if the user is not logged in and a jumbotron description of the microblog. If the user is logged in, then the messages index will be shown. 
+- Users are now able to edit their messages and delete them.
+- 
 8. Did you complete any catch up tasks? Which ones? Is there anything still not working
    about those features?
-
+- Log in/ log out fixed
+- Working deployment script, they work in four parts but they work! (see README for more information)
 
 9. Did you complete any additional tasks? Which ones? For each, describe how it should
    work and how that differs from your deployed functionality.
-
+- LesEncrypt certificate enabled and http requests redirect to https.
+- Bootstrap changes on nav, landing page, and various parts of app.
+- Admin users implemented. They have the power to delete any user or message.
 
 A. Did you complete any bonus addtional goals for extra credit? For each, describe how
    it should work and how that differs from your deployed functionality.
 
 
 B. Is there any other useful information that you want to provide for grading?
-
-
+The navactive is a little messed up on some pages, due to some changes I made trying to only trigger the active tag for specific pages.
