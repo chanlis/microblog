@@ -24,21 +24,25 @@
         <ul class="navbar-nav mr-auto">
          <%= if is_admin?(@current_user) do %>
             <li class="nav-item">
-              <% active = nav_active?(@view_module, "User") %>
+              <%= if String.contains?(to_string(@view_template), "index") do %>
+              <% active = nav_active?(@conn, "users") %>
+              <% end %>
               <%= link "Users", to: user_path(@conn, :index), class: "nav-link #{active}" %>
             </li>
           <% end %>
-          <%= if @current_user do %>
           <li class="nav-item">
-            <% active = nav_active?(@view_module, "Message") %>
+            <%= if String.contains?(to_string(@view_template), "index") do %>
+            <% active = nav_active?(@conn, "message") %>
+            <% end %>
               <%= link "Explore", to: message_path(@conn, :index), class: "nav-link #{active}" %>
           </li>
+          <%= if @current_user do %>
           <li class="nav-item">
-            <% active = nav_active?(@view_module, "Follow") %>
+            <% active = nav_active?(@conn, "follows") %>
 	          <%= link "Follows", to: follow_path(@conn, :index), class: "nav-link #{active}" %>
           </li>
             <li class="nav-item">
-              <% active = (nav_active?(@view_module, "User") && nav_active?(@view_template, "show"))  %>
+              <% active = nav_active?(@conn, "users/" <> to_string(@current_user.id)) %>
               <%= link "My Profile", to: user_path(@conn, :show, @current_user), class: "nav-link #{active}" %>
             </li>
           <% end %>

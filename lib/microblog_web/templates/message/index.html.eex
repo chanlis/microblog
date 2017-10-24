@@ -19,7 +19,12 @@
       <td><%= message.inserted_at %></td>
       <td><%= link get_user(message.user_id).name, to: user_path(@conn, :show, get_user(message.user_id)) %></td>
       <td class="text-right">
-        <span><%= link "Read More", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
+        <span>
+          <%= link "Read More", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %>
+          <%= if @current_user &&  @current_user.is_admin? do %>
+          <%= link "Delete", to: message_path(@conn, :delete, message), class: "btn btn-danger btn-xs" %>
+          <% end %>
+        </span>
       </td>
     </tr>
 <% end %>

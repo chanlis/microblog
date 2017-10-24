@@ -12,8 +12,8 @@ defmodule MicroblogWeb.Helpers do
     Microblog.User.list_follows
   end
 
-  def nav_active?(view, text) do
-    if String.contains?(to_string(view), text) do
+  def nav_active?(conn, text) do
+    if String.contains?(to_string(conn.request_path), text) do
       "active"
     else
       ""
